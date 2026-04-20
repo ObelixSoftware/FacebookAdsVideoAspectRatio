@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iron Drift - Facebook Ad Size Preview</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: #131a26;
+      --panel-2: #1a2436;
+      --text: #e8edf7;
+      --muted: #9eabc2;
+      --ok: #31c46c;
+      --warn: #ffbd4a;
+      --border: #26324a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #0b0f17 0%, #0f1522 100%);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 { margin: 0 0 8px; font-size: 1.7rem; }
+    .lead { color: var(--muted); margin: 0 0 18px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .meta {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid transparent;
+      margin-bottom: 10px;
+    }
+
+    .ok { background: rgba(49, 196, 108, 0.12); color: #7ce7a3; border-color: rgba(49, 196, 108, 0.45); }
+    .warn { background: rgba(255, 189, 74, 0.12); color: #ffd27c; border-color: rgba(255, 189, 74, 0.45); }
+
+    .stage {
+      width: 100%;
+      background: #000;
+      border: 1px solid #354766;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .r1x1 { aspect-ratio: 1 / 1; }
+    .r4x5 { aspect-ratio: 4 / 5; }
+    .r9x16 { aspect-ratio: 9 / 16; }
+
+    .stage video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Simulates platform fit behavior */
+      background: #000;
+      display: block;
+    }
+
+    .spec {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .panel {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    code {
+      background: #0d1422;
+      border: 1px solid #24344d;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 0.86rem;
+    }
+
+    a { color: #7eb6ff; }
+    .proof {
+      max-width: 220px;
+      border-radius: 10px;
+      border: 1px solid #314464;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Facebook Ad Size Preview (Iron Drift)</h1>
+    <p class="lead">
+      Client review page showing common Meta/Facebook video aspect ratios and how one encoded creative is fitted in each placement.
+      Canonical deliverable in this project is <code>output.mp4</code> at <code>1080x1350</code> (4:5).
+    </p>
+
+    <section class="grid" aria-label="Placement previews">
+      <article class="card">
+        <h2>Facebook Feed (Recommended)</h2>
+        <p class="meta">Aspect ratio: 4:5 - Common export: 1080x1350</p>
+        <span class="badge ok">Built and verified</span>
+        <div class="stage r4x5">
+          <video src="./output.mp4" controls muted loop playsinline preload="metadata"></video>
+        </div>
+        <ul class="spec">
+          <li>Best mobile feed coverage among feed-safe ratios.</li>
+          <li>Our actual encoded output uses this size.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Facebook Feed (Also allowed)</h2>
+        <p class="meta">Aspect ratio: 1:1 - Common export: 1080x1080</p>
+        <span class="badge warn">Allowed placement ratio</span>
+        <div class="stage r1x1">
+          <video src="./output.mp4" controls muted loop playsinline preload="metadata"></video>
+        </div>
+        <ul class="spec">
+          <li>Preview shows the 4:5 file fitted inside a square slot.</li>
+          <li>If a true 1:1 file is needed, re-encode specifically to 1080x1080.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Reels / Stories style</h2>
+        <p class="meta">Aspect ratio: 9:16 - Common export: 1080x1920</p>
+        <span class="badge warn">Allowed in vertical surfaces</span>
+        <div class="stage r9x16">
+          <video src="./output.mp4" controls muted loop playsinline preload="metadata"></video>
+        </div>
+        <ul class="spec">
+          <li>Preview shows how the same creative is scaled/fitted into tall placements.</li>
+          <li>For best full-screen fill, create a dedicated 9:16 master.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h3>Local validation evidence (this repository)</h3>
+      <p>
+        Generated file: <code>output.mp4</code><br />
+        Verified via <code>ffprobe</code>: <code>codec_name=h264</code>, <code>width=1080</code>, <code>height=1350</code>,
+        <code>display_aspect_ratio=4:5</code>, <code>pix_fmt=yuv420p</code>, audio <code>aac</code> (48 kHz, mono).
+      </p>
+      <p>
+        Visual proof image: <code>proof_frame.jpg</code> (single frame extracted from <code>output.mp4</code>).
+      </p>
+      <img class="proof" src="./proof_frame.jpg" alt="Extracted proof frame from output.mp4" />
+    </section>
+
+    <section class="panel">
+      <h3>References</h3>
+      <ul>
+        <li><a href="https://www.facebook.com/business/help/742478679120153" target="_blank" rel="noopener noreferrer">Meta Business Help Center - Ad specs and technical requirements overview</a></li>
+        <li><a href="https://www.facebook.com/business/help/103816146375741" target="_blank" rel="noopener noreferrer">Meta Business Help Center - Best practices for aspect ratios across placements</a></li>
+        <li><a href="https://www.facebook.com/business/ads-guide/update/video/facebook-feed/outcome-engagement" target="_blank" rel="noopener noreferrer">Facebook Ads Guide - Facebook Feed video ad specs</a></li>
+        <li><a href="https://www.facebook.com/business/ads-guide/update/video/facebook-facebook-reels" target="_blank" rel="noopener noreferrer">Facebook Ads Guide - Facebook Reels video ad specs</a></li>
+      </ul>
+      <p class="meta">
+        Notes: placement-level limits (durations, safe zones, crop behavior, text regions) can change. Re-check official links before final campaign upload.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
