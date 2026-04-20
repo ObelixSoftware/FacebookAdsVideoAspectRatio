@@ -1,4 +1,4 @@
-# Iron Drift — Facebook ad video (`output.mp4`)
+# Facebook ad video (`output.mp4`)
 
 ## What Meta allows (and how “resize” works)
 
